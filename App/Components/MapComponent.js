@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import styles from './Styles/MapComponentStyle'
 import MapView from 'react-native-maps'
+import SearchBox from './SearchBox'
 
 export default class MapComponent extends Component {
   // // Prop type warnings
@@ -30,6 +31,7 @@ export default class MapComponent extends Component {
             pinColor='red'
           />
         </MapView>
+        <SearchBox />
       </View>
     )
   }
