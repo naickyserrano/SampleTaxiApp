@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { View, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
-// Add Actions - replace 'Your' with whatever your reducer is called :)
 import { createStructuredSelector } from 'reselect'
 // import HomeScreenAction from '../Redux/HomeScreenRedux'
 import MapComponent from '../Components/MapComponent'
@@ -11,6 +10,8 @@ import styles from './Styles/HomeScreenStyle'
 //   selectInputLocation
 // } from '../Selectors/HomeScreenSelectors'
 import RNGooglePlaces from 'react-native-google-places'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import Footer from '../Components/Footer'
 
 const { width, height } = Dimensions.get('window')
 
@@ -42,7 +43,10 @@ class HomeScreen extends PureComponent {
   }
 
   static navigationOptions = {
-    title: 'FakeTaxi'
+    title: 'FakeTaxi',
+    headerStyle: styles.header,
+    headerLeft: <Icon name='bars' style={styles.headerIcon} />,
+    headerRight: <Icon name='gift' style={styles.headerIcon} />
   }
 
   watchID : ?number = null
@@ -131,6 +135,7 @@ class HomeScreen extends PureComponent {
           handleToggleFocus={this.handleToggleFocus}
           googlePlaces={googlePlaces}
         />
+        <Footer />
       </View>
     )
   }
