@@ -12,12 +12,19 @@ export default StyleSheet.create({
     marginRight: 15,
     marginTop: 10,
     backgroundColor: '#FFF',
+    borderColor: '#FDBB22',
+    borderWidth: 1,
     opacity: 0.9,
     borderRadius: 7,
     padding: 10
   },
   inputSearch: {
-    fontSize: 14
+    fontSize: 14,
+    flex: 1
+  },
+  focus: {
+    borderColor: '#FDBB22',
+    borderWidth: 1
   },
   inputGroup: {
     flex: 1,

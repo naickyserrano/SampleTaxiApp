@@ -12,6 +12,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 @import GoogleMaps;
+@import GooglePlaces;
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -20,6 +21,7 @@
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   [GMSServices provideAPIKey:@"AIzaSyC176NcAh0FsDM2Z9_cvwVmLXeDN0u6uTc"];
+  [GMSPlacesClient provideAPIKey:@"AIzaSyC176NcAh0FsDM2Z9_cvwVmLXeDN0u6uTc"];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"SampleTaxiApp"
                                                initialProperties:nil

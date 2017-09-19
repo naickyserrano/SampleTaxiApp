@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { View, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import { createStructuredSelector } from 'reselect'
+// import HomeScreenAction from '../Redux/HomeScreenRedux'
 import MapComponent from '../Components/MapComponent'
 // Styles
 import styles from './Styles/HomeScreenStyle'
+// import {
+//   selectInputLocation
+// } from '../Selectors/HomeScreenSelectors'
+import RNGooglePlaces from 'react-native-google-places'
 
 const { width, height } = Dimensions.get('window')
 
@@ -13,7 +18,7 @@ const ASPECT_RATIO = width / height
 const LATITUDE_DELTA = 0.0922
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
-class HomeScreen extends Component {
+class HomeScreen extends PureComponent {
   constructor (props) {
     super(props)
 
@@ -27,15 +32,20 @@ class HomeScreen extends Component {
       markerPosition: {
         latitude: 0,
         longitude: 0
-      }
+      },
+      pickUpFocus: false,
+      dropOffFocus: false,
+      googlePlaces: []
     }
+
+    this.handleGetGooglePlaces = this.handleGetGooglePlaces.bind(this)
   }
 
   static navigationOptions = {
-    title: 'Home'
+    title: 'FakeTaxi'
   }
 
-  watchID: ?number = null
+  watchID : ?number = null
 
   componentDidMount = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -79,25 +89,61 @@ class HomeScreen extends Component {
     navigator.geolocation.clearWatch(this.watchID)
   }
 
+  handleToggleFocus = (key) => {
+    if (key === 'pickUp') {
+      this.setState({
+        pickUpFocus: true,
+        dropOffFocus: false
+      })
+    } else {
+      this.setState({
+        pickUpFocus: false,
+        dropOffFocus: true
+      })
+    }
+  }
+
+  handleGetGooglePlaces = (value) => {
+    if (value.value !== '') {
+      RNGooglePlaces.getAutocompletePredictions(value.value, {
+        country: 'PH'
+      }).then((place) => {
+        this.setState({
+          googlePlaces: place
+        })
+      }).catch((err) => console.log(err.message))
+    } else {
+      this.setState({
+        googlePlaces: []
+      })
+    }
+  }
+
   render () {
-    const { region } = this.state
+    const { region, pickUpFocus, dropOffFocus, googlePlaces } = this.state
     return (
       <View style={styles.container}>
         <MapComponent
           region={region}
+          handleGetGooglePlaces={this.handleGetGooglePlaces}
+          pickUpFocus={pickUpFocus}
+          dropOffFocus={dropOffFocus}
+          handleToggleFocus={this.handleToggleFocus}
+          googlePlaces={googlePlaces}
         />
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  // inputLocation: selectInputLocation()
+})
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    // getInputLocation: (payload) => dispatch(HomeScreenAction.getInputLocation(payload)),
+    dispatch
   }
 }
 
