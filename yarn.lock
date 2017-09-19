@@ -6459,6 +6459,10 @@ react-native-drawer@^2.3.0:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
+react-native-google-places@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-google-places/-/react-native-google-places-2.4.2.tgz#ac4cf3391481ecd89803282554e209f0bfefc31e"
+
 react-native-i18n@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-i18n/-/react-native-i18n-1.0.0.tgz#0c407d9ebb846aae1aa5e05de6503008553f02fd"

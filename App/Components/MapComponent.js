@@ -4,6 +4,7 @@ import { View } from 'react-native'
 import styles from './Styles/MapComponentStyle'
 import MapView from 'react-native-maps'
 import SearchBox from './SearchBox'
+import SearchResult from './SearchResult'
 
 export default class MapComponent extends Component {
   // // Prop type warnings
@@ -18,7 +19,12 @@ export default class MapComponent extends Component {
   // }
 
   render () {
-    const { region } = this.props
+    const { region,
+      handleGetGooglePlaces,
+      pickUpFocus,
+      dropOffFocus,
+      handleToggleFocus,
+      googlePlaces } = this.props
     return (
       <View style={styles.container}>
         <MapView
@@ -31,7 +37,15 @@ export default class MapComponent extends Component {
             pinColor='red'
           />
         </MapView>
-        <SearchBox />
+        <SearchBox
+          handleGetGooglePlaces={handleGetGooglePlaces}
+          pickUpFocus={pickUpFocus}
+          dropOffFocus={dropOffFocus}
+          handleToggleFocus={handleToggleFocus}
+        />
+        <SearchResult
+          googlePlaces={googlePlaces}
+        />
       </View>
     )
   }
