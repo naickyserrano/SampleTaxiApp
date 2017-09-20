@@ -10,8 +10,9 @@ import styles from './Styles/HomeScreenStyle'
 //   selectInputLocation
 // } from '../Selectors/HomeScreenSelectors'
 import RNGooglePlaces from 'react-native-google-places'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Header from '../Components/Header'
 import Footer from '../Components/Footer'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const { width, height } = Dimensions.get('window')
 
@@ -43,10 +44,10 @@ class HomeScreen extends PureComponent {
   }
 
   static navigationOptions = {
-    title: 'FakeTaxi',
-    headerStyle: styles.header,
-    headerLeft: <Icon name='bars' style={styles.headerIcon} />,
-    headerRight: <Icon name='gift' style={styles.headerIcon} />
+    drawerLabel: 'Home',
+    drawerIcon: ({tintColor}) => (
+      <Icon name='home' size={20} style={{color: tintColor}} />
+    )
   }
 
   watchID : ?number = null
@@ -125,8 +126,10 @@ class HomeScreen extends PureComponent {
 
   render () {
     const { region, pickUpFocus, dropOffFocus, googlePlaces } = this.state
+    const { navigation } = this.props
     return (
       <View style={styles.container}>
+        <Header navigation={navigation} />
         <MapComponent
           region={region}
           handleGetGooglePlaces={this.handleGetGooglePlaces}
