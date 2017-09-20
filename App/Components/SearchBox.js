@@ -21,7 +21,6 @@ export default class SearchBox extends Component {
   }
 
   render () {
-    const { pickUpFocus, dropOffFocus, handleToggleFocus } = this.props
     return (
       <View style={styles.searchBox}>
         <View style={styles.inputWrapper}>
@@ -29,10 +28,9 @@ export default class SearchBox extends Component {
           <View style={styles.inputGroup}>
             <Icon name='search' size={15} color='#000' style={styles.icon} />
             <TextInput
-              onFocus={() => { handleToggleFocus('pickUp') }}
-              style={[styles.inputSearch, pickUpFocus && styles.focus]}
+              style={styles.inputSearch}
               placeholder='Choose pick-up location'
-              onChangeText={(value) => this.handleInputSearch({key: 'pickUp', value: value})}
+              onChangeText={(value) => this.handleInputSearch(value)}
               autoCorrect={false}
             />
           </View>
@@ -42,10 +40,9 @@ export default class SearchBox extends Component {
           <View style={styles.inputGroup}>
             <Icon name='search' size={15} color='#000' style={styles.icon} />
             <TextInput
-              onFocus={() => { handleToggleFocus('dropOff') }}
-              style={[styles.inputSearch, dropOffFocus && styles.focus]}
+              style={styles.inputSearch}
               placeholder='Choose drop-off location'
-              onChangeText={(value) => this.handleInputSearch({key: 'dropOff', value: value})}
+              onChangeText={(value) => this.handleInputSearch(value)}
               autoCorrect={false}
             />
           </View>

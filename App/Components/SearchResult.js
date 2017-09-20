@@ -33,12 +33,12 @@ export default class SearchResult extends Component {
   }
 
   render () {
-    const { googlePlaces } = this.props
+    const { inputLocation } = this.props
     return (
       <View style={styles.searchResultsWrapper}>
-        <View style={[styles.listWrapper, googlePlaces.length <= 0 && styles.display]}>
+        <View style={[styles.listWrapper, inputLocation.length <= 0 && styles.display]}>
           <FlatList
-            data={googlePlaces}
+            data={inputLocation}
             renderItem={this.renderListResults}
             keyExtractor={(item, index) => index}
           />
