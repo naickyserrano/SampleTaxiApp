@@ -22,10 +22,6 @@ export default StyleSheet.create({
     fontSize: 14,
     flex: 1
   },
-  focus: {
-    borderColor: '#FDBB22',
-    borderWidth: 1
-  },
   inputGroup: {
     flex: 1,
     flexDirection: 'row'

@@ -21,10 +21,7 @@ export default class MapComponent extends Component {
   render () {
     const { region,
       handleGetGooglePlaces,
-      pickUpFocus,
-      dropOffFocus,
-      handleToggleFocus,
-      googlePlaces } = this.props
+      inputLocation } = this.props
     return (
       <View style={styles.container}>
         <MapView
@@ -39,12 +36,9 @@ export default class MapComponent extends Component {
         </MapView>
         <SearchBox
           handleGetGooglePlaces={handleGetGooglePlaces}
-          pickUpFocus={pickUpFocus}
-          dropOffFocus={dropOffFocus}
-          handleToggleFocus={handleToggleFocus}
         />
         <SearchResult
-          googlePlaces={googlePlaces}
+          inputLocation={inputLocation}
         />
       </View>
     )

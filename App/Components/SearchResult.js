@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, FlatList, Text, TouchableHighlight } from 'react-native'
+import { View, FlatList, Text, TouchableWithoutFeedback } from 'react-native'
 import styles from './Styles/SearchResultStyle'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -18,7 +18,7 @@ export default class SearchResult extends Component {
 
   renderListResults = ({item}) => {
     return (
-      <TouchableHighlight>
+      <TouchableWithoutFeedback>
         <View style={styles.listItemWrapper}>
           <View>
             <Icon style={styles.icon} name='location-on' size={20} color='#7D7D7D' />
@@ -28,17 +28,17 @@ export default class SearchResult extends Component {
             <Text>{item.secondaryText}</Text>
           </View>
         </View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
     )
   }
 
   render () {
-    const { googlePlaces } = this.props
+    const { inputLocation } = this.props
     return (
       <View style={styles.searchResultsWrapper}>
-        <View style={[styles.listWrapper, googlePlaces.length <= 0 && styles.display]}>
+        <View style={[styles.listWrapper, inputLocation.length <= 0 && styles.display]}>
           <FlatList
-            data={googlePlaces}
+            data={inputLocation}
             renderItem={this.renderListResults}
             keyExtractor={(item, index) => index}
           />

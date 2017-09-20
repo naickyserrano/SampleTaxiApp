@@ -1,18 +1,18 @@
-// import { createSelector } from 'reselect'
+import { createSelector } from 'reselect'
 
-// /**
-//  * Direct selector to the employeePage state domain
-//  */
-// const selectHomeScreenDomain = () => (state) => state.homeScreen
+/**
+ * Direct selector to the employeePage state domain
+ */
+const selectHomeScreenDomain = () => (state) => state.homeScreen
 
-// /**
-//  * Other specific selectors
-//  */
-// const selectInputLocation = () => createSelector(
-//   selectHomeScreenDomain(),
-//   (substate) => substate.inputLocation
-// )
+/**
+ * Other specific selectors
+ */
+const selectInputLocation = () => createSelector(
+  selectHomeScreenDomain(),
+  (substate) => substate.inputLocation
+)
 
-// export {
-//   selectInputLocation
-// }
+export {
+  selectInputLocation
+}
