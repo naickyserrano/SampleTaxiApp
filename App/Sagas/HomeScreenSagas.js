@@ -10,30 +10,20 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { put } from 'redux-saga/effects'
-import HomeScreenSagaAction from '../Redux/HomeScreenRedux'
-import { Dimensions } from 'react-native'
+import { call, put } from 'redux-saga/effects'
+import HomeScreenActions from '../Redux/HomeScreenRedux'
 
-const { width, height } = Dimensions.get('window')
-const ASPECT_RATIO = width / height
-const LATITUDE_DELTA = 0.0922
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
+export function * getHomeScreen (api, action) {
+  const { data } = action
+  // make the call to the api
+  const response = yield call(api.gethomeScreen, data)
 
-export function * getCurrentLocationSaga (action) {
-  this.initialRegion = {}
-  yield navigator.geolocation.getCurrentPosition((position) => {
-    let lat = position.coords.latitude
-    let long = position.coords.longitude
-
-    let initialRegion = {
-      latitude: lat,
-      longitude: long,
-      latitudeDelta: LATITUDE_DELTA,
-      longitudeDelta: LONGITUDE_DELTA
-    }
-    this.initialRegion = initialRegion
-  },
-  (err) => console.error(err),
-  {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
-  yield put(HomeScreenSagaAction.setCurrentLocation(this.initialRegion))
+  // success?
+  if (response.ok) {
+    // You might need to change the response here - do this with a 'transform',
+    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    yield put(HomeScreenActions.homeScreenSuccess(response.data))
+  } else {
+    yield put(HomeScreenActions.homeScreenFailure())
+  }
 }

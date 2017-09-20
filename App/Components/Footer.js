@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, TouchableHighlight } from 'react-native'
 import styles from './Styles/FooterStyle'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class Footer extends Component {
   // // Prop type warnings
@@ -19,20 +19,20 @@ export default class Footer extends Component {
   render () {
     const footerIcons = [
       {
-        title: 'TaxiCar',
-        icon: 'car'
+        title: 'Bicycle',
+        icon: 'directions-bike'
       },
       {
-        title: 'TaxiShare',
-        icon: 'car'
+        title: 'Car',
+        icon: 'directions-car'
       },
       {
-        title: 'Premium',
-        icon: 'car'
+        title: 'Bus',
+        icon: 'directions-bus'
       },
       {
-        title: 'TaxiBike',
-        icon: 'car'
+        title: 'FakeTaxi',
+        icon: 'local-taxi'
       }
     ]
 

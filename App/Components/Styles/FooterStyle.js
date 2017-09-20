@@ -5,7 +5,8 @@ export default StyleSheet.create({
     backgroundColor: '#FFF',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    padding: 10
+    paddingHorizontal: 15,
+    paddingVertical: 10
   },
   icon: {
     marginBottom: 5,
